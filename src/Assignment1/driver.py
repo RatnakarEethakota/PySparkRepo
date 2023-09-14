@@ -10,16 +10,16 @@ schema= StructType([
     StructField("firstname",StringType(),True),
     StructField("middlename",StringType(),True),
     StructField("lastname",StringType(),True)])),
-    StructField("dob",StringType(),True),
+    StructField("dob",LongType(),True),
     StructField("gender",StringType(),True),
     StructField("salary",IntegerType(),True)
 ])
 data = [
-    (('james','','Smith'),'03011998','M',3000),
-    (('Micheal','Rose',''),'10111998','M',20000),
-    (('Robert','','Williams'),'02012000','M',3000),
-    (('Maria','Anne','Jones'),'03011998','F',11000),
-    (('Jen','Mary','Brown'),'04101998','F',10000)
+    (('james','','Smith'),3011998,'M',3000),
+    (('Micheal','Rose',''),10111998,'M',20000),
+    (('Robert','','Williams'),2012000,'M',3000),
+    (('Maria','Anne','Jones'),3011998,'F',11000),
+    (('Jen','Mary','Brown'),4101998,'F',10000)
 ]
 df=create_dataframe(spark,data,schema)
 df.show()
@@ -40,14 +40,16 @@ df3=change_value(df,salary='salary',value=1000)
 #4.	Change the data types of DOB and salary to String
 df4=change_datatype(df,dob='String',salary='String')
 
+
 # 5.Derive new column from salary column.
 df5=add_column(df,bonus='bonus',salary='salary',value=500)
 
 # 6.Rename nested column( Firstname -> firstposition, middlename -> secondposition, lastname -> lastposition)
-df6=nested_column(df,firstname='firstposition',middlename='secondposition',lastname='lastposition')
+df6=nested_column(df).show()
 
 # 7.Filter the name column whose salary in maximum.
-df7=max_sal(df,column='name')
+df7=max_sal(df,name='name',salary='salary')
+
 
 
 # 8.Drop the department and age column.

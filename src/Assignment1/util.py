@@ -19,17 +19,17 @@ def change_value(df,salary,value):
     df3=df.withColumn("salary",col("salary")+value)
     return df3
 def change_datatype(df,dob,salary):
-    df4=df.withColumn("dob", col("dob").cast("String"))
-    df4=df.withColumn("salary", col("salary").cast("String"))
+    df4=df.withColumn("dob", col("dob").cast("String")).withColumn("salary", col("salary").cast("String"))
     return df4
 def add_column(df,bonus,salary,value):
     df5=df.withColumn("bonus",col(salary)+value)
     return df5
-def nested_column(df,firstname,middlename,lastname):
-    df6=df.withColumnRenamed(firstname, 'firstposition'),(middlename, 'secondposition'),(lastname, 'lastposition')
+def nested_column(df):
+    df6=df.withColumn('name', expr("map('firstposition', name['firstname'], 'middleposition', name['middlename'], 'lastposition', name['lastname'])"))
     return df6
-def max_sal(df,column):
-    df7=df.select(max(column))
+def max_sal(df,name,salary):
+    # df7=df.select("name").filter(col(column) == max(col(column)))
+    df7=df.filter( (col(name) == max(salary)) )
     return df7
 def drop_column(df,column):
     df8=df.drop(column)
