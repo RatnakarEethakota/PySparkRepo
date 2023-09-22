@@ -25,37 +25,37 @@ df=create_dataframe(spark,data,schema)
 df.show()
 
 #1.	Select firstname, lastname and salary from Dataframe.
-df1=select(df,df.name.firstname,df.name.lastname,df.salary)
+df_select=select(df,df.name.firstname,df.name.lastname,df.salary)
 
 
 # 2. Add Country, department, and age column in the dataframe.
-df2=add_col(df,col_name="Country",col_value="INDIA")
-df2=add_col(df,col_name="department",col_value="IT Department")
-df2=add_col(df,col_name="age",col_value="24")
+df_add=add_col(df,col_name="Country",col_value="INDIA")
+df_add=add_col(df,col_name="department",col_value="IT Department")
+df_add=add_col(df,col_name="age",col_value="24")
 
 # 3. Change the value of salary column
-df3=change_value(df,salary='salary',value=1000)
+df_change=change_value(df,salary='salary',value=1000)
 
 
 #4.	Change the data types of DOB and salary to String
-df4=change_datatype(df,dob='String',salary='String')
+df_change_datatype=change_datatype(df,dob='String',salary='String')
 
 
 # 5.Derive new column from salary column.
-df5=add_column(df,bonus='bonus',salary='salary',value=500)
+df_newcol=add_column(df,bonus='bonus',salary='salary',value=500)
 
 # 6.Rename nested column( Firstname -> firstposition, middlename -> secondposition, lastname -> lastposition)
-df6=nested_column(df).show()
+df_rename=nested_column(df).show()
 
 # 7.Filter the name column whose salary in maximum.
-df7=max_sal(df,name='name',salary='salary')
+df_filter_maxsal=max_sal(df,name='name',salary='salary')
 
 
 
 # 8.Drop the department and age column.
-df8=drop_column(df,column=('department'))
-df8=drop_column(df,column=('age'))
+df_drop=drop_column(df,column=('department'))
+df_drop=drop_column(df,column=('age'))
 
 # 9.List out distinct value of dob and salary
-df9=distinct_value(df,column='dob')
-df9=distinct_value(df,column='salary')
+df_distinct=distinct_value(df,column='dob')
+df_distinct=distinct_value(df,column='salary')
