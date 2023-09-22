@@ -24,9 +24,8 @@ data2 =[
 df=create_dataframe(spark,data2,schema2)
 
 #11.Find total amount exported to each country of each product.
-df1=df.groupBy('Country').pivot('Product').agg(sum('Amount'))
-df1.show()
+df_pivot=df.groupBy('Country').pivot('Product').agg(sum('Amount'))
+
 
 # 12.Perform unpivot function on output of question 2.
-df2 = unpivot_fun(df1)
-df2.show()
+df_unpivot = unpivot_fun(df_pivot)
