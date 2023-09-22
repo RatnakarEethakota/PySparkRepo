@@ -26,13 +26,13 @@ data1 = [
 df=create_dataframe(spark,data1,schema1)
 
 # Select first row from each department group.
-df1=first_row(df).show()
+df_select=first_row(df).show()
 
 # Retrieve Employees who earns the highest salary.
-df2=highest_salary(df)
-df2.show()
+df_highsal=highest_salary(df)
+
 
 # Select the highest, lowest, average, and total salary for each department group.
-df3=totalsal_avg_high_low(df)
-df3.show()
+df_salary=totalsal_avg_high_low(df)
+
 
